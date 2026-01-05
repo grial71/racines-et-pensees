@@ -348,6 +348,8 @@
     </header>
 
     <section class="controls">
+
+
       <div class="searchBox">
         <span>🔍</span>
         <input id="searchInput" type="text" placeholder="Rechercher (ex : tapis, livre, entretien…)" />
@@ -361,10 +363,18 @@
           <option value="entretien">🛠️ Entretien</option>
           <option value="bienetre">🌿 Bien-être</option>
           <option value="bureau">💻 Bureau</option>
+          <option value="hygiene">Hygiène</option>
+
         </select>
       </div>
     </section>
 
+   </section>
+
+<div class="alphabet-menu" id="alphabetMenu"></div>
+
+<section class="grid">
+ 
     <div class="meta">
       <div class="count" id="countText">0 produit</div>
       <div>Astuce : tape un mot-clé + choisis un thème</div>
@@ -497,6 +507,24 @@
 
       </div>
 
+      <!-- MARVIS DENTIFRICE -->
+<article class="card"
+  data-category="hygiene"
+  data-keywords="marvis dentifrice blancheur menthe fumeur dents haleine blanchement">
+  <span class="tag">Hygiène</span>
+
+  <img src="images/Marvis_Dentifrice.png"
+       alt="Marvis Dentifrice blanchissant"
+       onerror="this.style.display='none'">
+
+  <h2>Marvis — Dentifrice blanchissant (menthe)</h2>
+  <p>Fraîcheur longue durée, aide au blanchiment naturel. Format 85 ml.</p>
+
+  <a class="btn" href="COLLE_TON_LIEN_AMAZON_ICI" target="_blank" rel="noopener">
+    Voir sur Amazon
+  </a>
+</article>
+
       <div class="empty" id="emptyState">
         Aucun produit trouvé. Essaie un autre mot-clé ou choisis “Tous les thèmes”.
       </div>
@@ -555,6 +583,7 @@
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 </body>
 </html>
