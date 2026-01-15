@@ -138,34 +138,6 @@
       cursor:pointer;
     }
 
-    /* ===== Accessibilité (barre) ===== */
-    .a11yBar{
-      margin: 12px 0 0;
-      display:flex;
-      justify-content: flex-end;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .a11yToggle, .a11yAction{
-      border: 1px solid rgba(0,0,0,.12);
-      background: #fff;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0,0,0,.06);
-    }
-    .a11yPanel{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      padding:8px;
-      border-radius: 16px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,.10);
-      box-shadow:0 10px 30px rgba(0,0,0,.08);
-    }
-
     .meta{
       display:flex;
       align-items:center;
@@ -276,12 +248,17 @@
       letter-spacing: -.01em;
     }
 
+    /* ✅ Pour que TOUTES les cartes aient la même hauteur malgré des textes différents */
     .card p{
       margin:0;
       color:#38483f;
       line-height:1.45;
       font-size: .92rem;
       flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 5; /* limite la hauteur du texte */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .btn{
@@ -343,9 +320,8 @@
       gap:10px;
     }
     .telegram{ background:#229ED9; }
-.tt{ background:#111; }
-.gf{ background:#02a95c; } /* si tu gardes GoFundMe */
-
+    .tt{ background:#111; }
+    .gf{ background:#02a95c; }
 
     /* ===== Mode contraste élevé ===== */
     body.high-contrast{
@@ -357,9 +333,7 @@
     body.high-contrast footer,
     body.high-contrast .card,
     body.high-contrast .searchBox,
-    body.high-contrast .selectBox,
-    body.high-contrast .a11yToggle,
-    body.high-contrast .a11yPanel{
+    body.high-contrast .selectBox{
       background:#000 !important;
       color:#fff !important;
       border-color:#fff !important;
@@ -402,6 +376,7 @@
         <span>🌿 Bien-être</span>
         <span>🧼 Hygiène</span>
         <span>🛡️ Sécurité</span>
+        <span>👕 Mode</span>
       </div>
 
       <!-- Recherche + thème -->
@@ -421,81 +396,16 @@
             <option value="bienetre">🌿 Bien-être</option>
             <option value="hygiene">🧼 Hygiène</option>
             <option value="securite">🛡️ Sécurité</option>
+            <option value="mode">👕 Mode</option>
           </select>
         </div>
       </section>
-
     </header>
 
     <div class="meta">
       <div class="countPill" id="countText">0 produit</div>
       <div class="hint">Conseil : écris un mot-clé + choisis un thème.</div>
     </div>
-
-    <!-- MODE - Jean femme coupe large -->
-<article class="card"
-         data-category="bienetre"
-         data-keywords="jean femme large mode confortable quotidien casual">
-
-         <!-- MODE / SPORT - Adidas VS Pace 2.0 -->
-<article class="card"
-         data-category="sport"
-         data-keywords="adidas chaussures homme baskets sport mode pace 2.0">
-
-  <span class="tag">Sport</span>
-
-  <div class="thumb">
-    <img src="images/Adidas_VS_Pace_2_0.png"
-         alt="Adidas Homme VS Pace 2.0 Chaussures"
-         loading="lazy"
-         onerror="this.parentElement.style.display='none'">
-  </div>
-
-  <div class="cardBody">
-    <h2>Adidas VS Pace 2.0 — Baskets homme</h2>
-
-    <p>
-      Chaussures Adidas au style épuré et confortable, idéales pour un usage
-      quotidien : marche, sorties urbaines ou tenue décontractée.
-      Bon maintien, semelle confortable et design intemporel.
-    </p>
-
-    <a class="btn"
-       href="https://amzn.to/4qkKX3O"
-       target="_blank"
-       rel="noopener">
-       Voir sur Amazon
-    </a>
-  </div>
-</article>
-
-  <span class="tag">Mode</span>
-
-  <div class="thumb">
-    <img src="images/jean_femme_large.jpg"
-         alt="Jean femme coupe large confortable"
-         loading="lazy"
-         onerror="this.parentElement.style.display='none'">
-  </div>
-
-  <div class="cardBody">
-    <h2>Jean femme coupe large — confort & style</h2>
-
-    <p>
-      Jean moderne à coupe large, confortable au quotidien.
-      Un basique élégant, facile à porter, adapté à un usage urbain
-      comme décontracté.
-    </p>
-
-    <a class="btn"
-       href="https://amzn.to/4qkKX3O"
-       target="_blank"
-       rel="noopener">
-       Voir sur Amazon
-    </a>
-  </div>
-</article>
-
 
     <section class="featured">
       <div class="featuredTitle">⭐ Sélection du moment</div>
@@ -504,67 +414,44 @@
       </p>
     </section>
 
-    <!-- ✅ Grille unique -->
+    <!-- ✅ Grille unique (TOUTES les cartes ici) -->
     <div class="grid" id="productGrid">
 
       <!-- BIEN-ÊTRE - Ashwagandha Cortisol Manager -->
-<article class="card"
-         data-category="bienetre"
-         data-keywords="ashwagandha cortisol stress anxiete sommeil magnesium plante adaptogene">
-  
-  <span class="tag">Bien-être</span>
+      <article class="card" data-category="bienetre" data-keywords="ashwagandha cortisol stress anxiete sommeil magnesium plante adaptogene">
+        <span class="tag">Bien-être</span>
+        <div class="thumb">
+          <img src="images/Cortisol_Manager_Ashwagandha_COMPLEXE.png"
+               alt="Ashwagandha Complexe JanyPure – Gestion du stress et du cortisol"
+               loading="lazy" onerror="this.parentElement.style.display='none'">
+        </div>
+        <div class="cardBody">
+          <h2>Ashwagandha Complexe – Gestion du Stress & Cortisol</h2>
+          <p>Complément à base d’Ashwagandha, magnésium et silicium. Aide à réguler le stress, soutenir le sommeil et l’équilibre émotionnel. Cure d’1 mois – 60 gélules véganes, sans gluten.</p>
+          <a class="btn" href="#" target="_blank" rel="noopener">Voir sur Amazon</a>
+        </div>
+      </article>
 
-  <div class="thumb">
-    <img src="images/Cortisol_Manager_Ashwagandha_COMPLEXE.png"
-         alt="Ashwagandha Complexe JanyPure – Gestion du stress et du cortisol"
-         loading="lazy"
-         onerror="this.parentElement.style.display='none'">
-  </div>
-
-  <div class="cardBody">
-    <h2>Ashwagandha Complexe – Gestion du Stress & Cortisol</h2>
-
-    <p>
-      Complément à base d’Ashwagandha, magnésium et silicium.
-      Aide à réguler le stress, soutenir le sommeil et l’équilibre émotionnel.
-      Cure d’1 mois – 60 gélules véganes, sans gluten.
-    </p>
-
-    <!-- 👉 Remplace # par ton lien Amazon affilié -->
-    <a class="btn"
-       href="#"
-       target="_blank"
-       rel="noopener">
-       Voir sur Amazon
-    </a>
-  </div>
-</article>
-
-
-      <!-- HYGIÈNE / BIEN-ÊTRE - Mixa Intensif Peaux Sèches -->
-<article class="card" data-category="bienetre" data-keywords="mixa creme peaux seches corps mains pieds hydratation 48h">
-  <span class="tag">Bien-être</span>
-  <div class="thumb">
-    <img src="images/Mixa_Intensif_Peaux_Seches.png"
-         alt="Mixa Intensif — Crème peaux très sèches"
-         loading="lazy"
-         onerror="this.parentElement.style.display='none'">
-  </div>
-  <div class="cardBody">
-    <h2>Mixa Intensif — Crème peaux très sèches</h2>
-    <p>Multi-usages visage/corps/mains/pieds. Nourrit et aide à raviver l’éclat (format pot).</p>
-    <!-- Mets ici ton lien Amazon (affiliation) -->
-    <a class="btn" href="#" target="_blank" rel="noopener">Voir sur Amazon</a>
-  </div>
-</article>
-
+      <!-- BIEN-ÊTRE - Mixa Intensif Peaux Sèches -->
+      <article class="card" data-category="bienetre" data-keywords="mixa creme peaux seches corps mains pieds hydratation 48h">
+        <span class="tag">Bien-être</span>
+        <div class="thumb">
+          <img src="images/Mixa_Intensif_Peaux_Seches.png"
+               alt="Mixa Intensif — Crème peaux très sèches"
+               loading="lazy" onerror="this.parentElement.style.display='none'">
+        </div>
+        <div class="cardBody">
+          <h2>Mixa Intensif — Crème peaux très sèches</h2>
+          <p>Multi-usages visage/corps/mains/pieds. Nourrit et aide à raviver l’éclat (format pot).</p>
+          <a class="btn" href="#" target="_blank" rel="noopener">Voir sur Amazon</a>
+        </div>
+      </article>
 
       <!-- LIVRE - Homo Deus -->
       <article class="card" data-category="livres" data-keywords="homo deus harari livre futur technologie">
         <span class="tag">Livre</span>
         <div class="thumb">
-          <img src="images/homo_deus.png" alt="Homo Deus — Yuval Noah Harari" loading="lazy"
-               onerror="this.parentElement.style.display='none'">
+          <img src="images/homo_deus.png" alt="Homo Deus — Yuval Noah Harari" loading="lazy" onerror="this.parentElement.style.display='none'">
         </div>
         <div class="cardBody">
           <h2>Homo Deus — Une brève histoire du futur</h2>
@@ -577,8 +464,7 @@
       <article class="card" data-category="livres" data-keywords="la psy freida mcfadden thriller suspense roman">
         <span class="tag">Livre</span>
         <div class="thumb">
-          <img src="images/la_psy.png" alt="La psy — Freida McFadden" loading="lazy"
-               onerror="this.parentElement.style.display='none'">
+          <img src="images/la_psy.png" alt="La psy — Freida McFadden" loading="lazy" onerror="this.parentElement.style.display='none'">
         </div>
         <div class="cardBody">
           <h2>La psy — Freida McFadden</h2>
@@ -591,8 +477,7 @@
       <article class="card" data-category="sport" data-keywords="tapis marche course pliable bureau walking pad">
         <span class="tag">Sport</span>
         <div class="thumb">
-          <img src="images/tapis_rouland.png" alt="Tapis de marche / course pliable" loading="lazy"
-               onerror="this.parentElement.style.display='none'">
+          <img src="images/tapis_rouland.png" alt="Tapis de marche / course pliable" loading="lazy" onerror="this.parentElement.style.display='none'">
         </div>
         <div class="cardBody">
           <h2>Tapis de marche / course pliable</h2>
@@ -605,8 +490,7 @@
       <article class="card" data-category="entretien" data-keywords="huile silicone lubrifiant tapis course entretien treadmill">
         <span class="tag">Entretien</span>
         <div class="thumb">
-          <img src="images/olej_silikonowy_do_biezni_200_ml.webp" alt="Huile de silicone pour tapis de course" loading="lazy"
-               onerror="this.parentElement.style.display='none'">
+          <img src="images/olej_silikonowy_do_biezni_200_ml.webp" alt="Huile de silicone pour tapis de course" loading="lazy" onerror="this.parentElement.style.display='none'">
         </div>
         <div class="cardBody">
           <h2>Huile de silicone (lubrifiant tapis)</h2>
@@ -619,8 +503,7 @@
       <article class="card" data-category="securite" data-keywords="spray gel poche anti agression sécurité">
         <span class="tag">Sécurité</span>
         <div class="thumb">
-          <img src="images/REDimpact_Spray.jpg" alt="Spray anti-agression de poche (gel)" loading="lazy"
-               onerror="this.parentElement.style.display='none'">
+          <img src="images/REDimpact_Spray.jpg" alt="Spray anti-agression de poche (gel)" loading="lazy" onerror="this.parentElement.style.display='none'">
         </div>
         <div class="cardBody">
           <h2>Spray anti-agression de poche (gel)</h2>
@@ -633,13 +516,11 @@
       <article class="card" data-category="hygiene" data-keywords="marvis dentifrice menthe blancheur hygiène">
         <span class="tag">Hygiène</span>
         <div class="thumb">
-          <img src="images/Marvis_Dentifrice.png" alt="Marvis — Dentifrice blanchissant menthe" loading="lazy"
-               onerror="this.parentElement.style.display='none'">
+          <img src="images/Marvis_Dentifrice.png" alt="Marvis — Dentifrice blanchissant menthe" loading="lazy" onerror="this.parentElement.style.display='none'">
         </div>
         <div class="cardBody">
           <h2>Marvis — Dentifrice menthe (blanchissant)</h2>
           <p>Un classique premium : menthe fraîche, packaging iconique, et usage quotidien agréable.</p>
-          <!-- Remplace # par ton lien d’affiliation Marvis -->
           <a class="btn" href="#" target="_blank" rel="noopener">Voir sur Amazon</a>
         </div>
       </article>
@@ -648,14 +529,38 @@
       <article class="card" data-category="bienetre" data-keywords="huile ricin bionoble cheveux cils sourcils bio">
         <span class="tag">Bien-être</span>
         <div class="thumb">
-          <img src="images/BIONOBLE_Huile_de_Ricin_Bio.png" alt="BIONOBLE — Huile de ricin bio" loading="lazy"
-               onerror="this.parentElement.style.display='none'">
+          <img src="images/BIONOBLE_Huile_de_Ricin_Bio.png" alt="BIONOBLE — Huile de ricin bio" loading="lazy" onerror="this.parentElement.style.display='none'">
         </div>
         <div class="cardBody">
           <h2>Huile de ricin bio — BIONOBLE</h2>
           <p>100% naturelle : pousse, renforce et répare (cheveux, cils, sourcils). Flacon verre + pipette.</p>
-          <!-- Remplace # par ton lien d’affiliation BIONOBLE -->
           <a class="btn" href="#" target="_blank" rel="noopener">Voir sur Amazon</a>
+        </div>
+      </article>
+
+      <!-- MODE - Jean femme coupe large -->
+      <article class="card" data-category="mode" data-keywords="jean femme large mode confortable quotidien casual">
+        <span class="tag">Mode</span>
+        <div class="thumb">
+          <img src="images/jean_femme_large.jpg" alt="Jean femme coupe large confortable" loading="lazy" onerror="this.parentElement.style.display='none'">
+        </div>
+        <div class="cardBody">
+          <h2>Jean femme coupe large — confort & style</h2>
+          <p>Jean moderne à coupe large, confortable au quotidien. Un basique facile à porter, adapté à un style urbain ou décontracté.</p>
+          <a class="btn" href="https://amzn.to/4qkKX3O" target="_blank" rel="noopener">Voir sur Amazon</a>
+        </div>
+      </article>
+
+      <!-- MODE - Adidas VS Pace 2.0 -->
+      <article class="card" data-category="mode" data-keywords="adidas chaussures homme baskets sneakers pace 2.0 mode urbain">
+        <span class="tag">Mode</span>
+        <div class="thumb">
+          <img src="images/Adidas_VS_Pace_2_0.png" alt="Adidas Homme VS Pace 2.0 Chaussures" loading="lazy" onerror="this.parentElement.style.display='none'">
+        </div>
+        <div class="cardBody">
+          <h2>Adidas VS Pace 2.0 — Baskets homme</h2>
+          <p>Style épuré et confortable, idéal au quotidien : marche, sorties urbaines, ou tenue décontractée. Bon maintien et design intemporel.</p>
+          <a class="btn" href="https://amzn.to/4qkKX3O" target="_blank" rel="noopener">Voir sur Amazon</a>
         </div>
       </article>
 
@@ -666,24 +571,11 @@
     <footer>
       Restons connectés :
       <div class="socials">
-  <a class="socialBtn gf"
-     href="https://www.gofundme.com/f/soutenir-un-service-dentraide-et-daccompagnement-solidaire"
-     target="_blank" rel="noopener">
-     💚 GoFundMe
-  </a>
-
-  <a class="socialBtn telegram"
-     href="https://t.me/+34753205355"
-     target="_blank" rel="noopener">
-     ✈️ Telegram
-  </a>
-
-  <a class="socialBtn tt"
-     href="https://www.tiktok.com/@mickael8881?lang=fr"
-     target="_blank" rel="noopener">
-     🎵 TikTok
-  </a>
-</div>
+        <a class="socialBtn gf" href="https://www.gofundme.com/f/soutenir-un-service-dentraide-et-daccompagnement-solidaire" target="_blank" rel="noopener">💚 GoFundMe</a>
+        <a class="socialBtn telegram" href="https://t.me/+34753205355" target="_blank" rel="noopener">✈️ Telegram</a>
+        <a class="socialBtn tt" href="https://www.tiktok.com/@mickael8881?lang=fr" target="_blank" rel="noopener">🎵 TikTok</a>
+      </div>
+    </footer>
 
   </div>
 
@@ -735,45 +627,6 @@
     searchInput.addEventListener('input', filter);
     categorySelect.addEventListener('change', filter);
     filter();
-
-    // ===== Accessibilité : A+, A-, Contraste, Reset =====
-    (function(){
-      const toggle = document.getElementById('a11yToggle');
-      const panel  = document.getElementById('a11yPanel');
-      const minus  = document.getElementById('fontMinus');
-      const plus   = document.getElementById('fontPlus');
-      const contrast = document.getElementById('contrastToggle');
-      const reset  = document.getElementById('a11yReset');
-
-      if(!toggle || !panel) return;
-
-      let font = parseInt(localStorage.getItem('a11yFont') || '16', 10);
-      let hc = localStorage.getItem('a11yContrast') === '1';
-
-      function apply(){
-        document.documentElement.style.setProperty('--base-font', font + 'px');
-        document.body.classList.toggle('high-contrast', hc);
-        localStorage.setItem('a11yFont', String(font));
-        localStorage.setItem('a11yContrast', hc ? '1' : '0');
-      }
-
-      toggle.addEventListener('click', ()=>{
-        const willOpen = panel.hasAttribute('hidden');
-        panel.toggleAttribute('hidden');
-        toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-      });
-
-      plus.addEventListener('click', ()=>{ font = Math.min(font+1, 22); apply(); });
-      minus.addEventListener('click', ()=>{ font = Math.max(font-1, 14); apply(); });
-
-      contrast.addEventListener('click', ()=>{ hc = !hc; apply(); });
-
-      reset.addEventListener('click', ()=>{
-        font = 16; hc = false; apply();
-      });
-
-      apply();
-    })();
   </script>
 </body>
 </html>
