@@ -355,6 +355,34 @@
       background:#111 !important;
       border-color:#fff !important;
     }
+
+    /* ========== OCCASION - Galerie ========== */
+.card.occasion .thumb{
+  height: 190px;
+}
+
+.thumbs{
+  margin: 10px 14px 0;
+  width: calc(100% - 28px);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.thumbs img{
+  width: 100%;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: #f3f6f4;
+}
+
+.thumbs img.isActive{
+  border-color: #229ED9;
+}
+
   </style>
 </head>
 
@@ -416,6 +444,48 @@
 
     <!-- ✅ Grille unique (TOUTES les cartes ici) -->
     <div class="grid" id="productGrid">
+
+<!-- OCCASION - Mamiya (Galerie) -->
+<article class="card occasion"
+  data-category="occasion"
+  data-keywords="mamiya appareil photo argentique objectif 28mm 50mm macro teleobjectif 300mm vintage occasion">
+
+  <span class="tag">Occasion</span>
+
+  <div class="thumb">
+    <img class="mainImg"
+         id="occMainMamiya"
+         src="images/mamiya_occasion_01_vue_dessus.jpg"
+         alt="Mamiya - vue dessus"
+         loading="lazy">
+  </div>
+
+  <div class="thumbs" data-main="occMainMamiya">
+    <img src="images/mamiya_occasion_01_vue_dessus.jpg" alt="Boîtier - vue dessus" class="isActive">
+    <img src="images/mamiya_occasion_02_objectif_28mm_face.jpg" alt="Objectif 28mm - face">
+    <img src="images/mamiya_occasion_03_objectif_50mm_face.jpg" alt="Objectif 50mm - face">
+    <img src="images/mamiya_occasion_04_teleobjectif_300mm_face.jpg" alt="Téléobjectif 300mm - face">
+    <img src="images/mamiya_occasion_05_teleobjectif_300mm_complet.jpg" alt="Téléobjectif 300mm - complet">
+    <img src="images/mamiya_occasion_06_boite_dessous.jpg" alt="Boîtier - dessous">
+  </div>
+
+  <div class="cardBody">
+    <h2>Mamiya argentique + objectifs (lot)</h2>
+
+    <p>
+      Vente d’occasion en direct. Photos réelles du produit.
+      Me contacter sur Telegram pour infos, prix et disponibilité.
+    </p>
+
+    <a class="btn telegram"
+       href="https://t.me/MICHEL8881967"
+       target="_blank" rel="noopener">
+      💬 Occasion — Me contacter sur Telegram
+    </a>
+  </div>
+</article>
+
+
 
       <!-- BIEN-ÊTRE - Ashwagandha Cortisol Manager -->
       <article class="card" data-category="bienetre" data-keywords="ashwagandha cortisol stress anxiete sommeil magnesium plante adaptogene">
@@ -627,6 +697,27 @@
     searchInput.addEventListener('input', filter);
     categorySelect.addEventListener('change', filter);
     filter();
+
+    // ===== Galerie Occasion : miniatures -> image principale =====
+document.querySelectorAll('.thumbs[data-main]').forEach(thumbs => {
+  const mainId = thumbs.getAttribute('data-main');
+  const mainImg = document.getElementById(mainId);
+  if(!mainImg) return;
+
+  const imgs = Array.from(thumbs.querySelectorAll('img'));
+
+  imgs.forEach(img => {
+    const activate = () => {
+      imgs.forEach(i => i.classList.remove('isActive'));
+      img.classList.add('isActive');
+      mainImg.src = img.src;
+      mainImg.alt = img.alt || "Photo occasion";
+    };
+    img.addEventListener('mouseenter', activate);
+    img.addEventListener('click', activate);
+  });
+});
+
   </script>
 </body>
 </html>
