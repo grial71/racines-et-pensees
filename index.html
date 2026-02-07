@@ -81,7 +81,7 @@
             overflow: hidden; display: flex; flex-direction: column; transition: 0.4s; height: 100%; position: relative;
         }
 
-        .card.hidden { display: none; }
+        .card.hidden { display: none !important; }
         .card:hover { transform: translateY(-10px); border-color: var(--gold-bright); }
 
         .thumb {
@@ -94,23 +94,7 @@
         .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
 
         h2 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-bright); margin: 0 0 10px; }
-        
-        /* Style pour le texte extensible */
-        .description-container {
-            font-size: 0.85rem; color: #ccc; margin-bottom: 20px; line-height: 1.4;
-            position: relative;
-        }
-        .text-content.truncated {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .read-more-btn {
-            background: none; border: none; color: var(--gold-bright); 
-            padding: 0; font-size: 0.75rem; cursor: pointer; margin-top: 5px;
-            font-weight: bold; text-transform: uppercase;
-        }
+        p { font-size: 0.85rem; color: #ccc; margin-bottom: 20px; line-height: 1.4; }
 
         .btn-amazon {
             background: linear-gradient(145deg, var(--gold-bright), var(--gold-muted));
@@ -129,14 +113,19 @@
             color: #000; padding: 4px 10px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; z-index: 2;
         }
 
+        .load-more-container { text-align: center; margin-top: 40px; }
+        .btn-load-more {
+            background: transparent; border: 2px solid var(--gold-bright); color: var(--gold-bright);
+            padding: 15px 40px; border-radius: 30px; cursor: pointer; font-family: 'Cinzel', serif;
+            font-weight: bold; transition: 0.3s;
+        }
+        .btn-load-more:hover { background: var(--gold-bright); color: #000; }
+
         .affiliation-note {
             margin-top: 60px; padding: 20px; text-align: center;
             border-top: 1px solid rgba(197, 160, 89, 0.2); background: rgba(255, 255, 255, 0.01);
         }
-        .affiliation-note p {
-            font-size: 0.8rem; color: #aaa; font-style: italic;
-            max-width: 900px; margin: 0 auto; line-height: 1.6;
-        }
+        .affiliation-note p { font-size: 0.8rem; color: #aaa; font-style: italic; max-width: 900px; margin: 0 auto; line-height: 1.6; }
 
         footer { padding: 40px; text-align: center; border-top: var(--border-gold); }
         .btn-gofundme {
@@ -152,7 +141,6 @@
 <body>
 
 <div class="wrap">
-    
     <div class="top-bar">
         <div class="audio-player">
             <span style="font-size: 0.6rem; color: var(--gold-muted);">MUSIQUE</span>
@@ -162,7 +150,6 @@
             <button onclick="toggleMusic()" style="background:transparent; border:none; color:var(--gold-bright); cursor:pointer;">▶️/⏸️</button>
             <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.3" style="width:50px;">
         </div>
-
         <div class="translate-box">
             <div id="google_translate_element"></div>
         </div>
@@ -184,30 +171,12 @@
     </div>
 
     <div class="grid" id="productGrid">
-        
-        <article class="card" data-category="maison">
-            <span class="tag">TESTÉ & APPROUVÉ</span>
-            <div class="thumb"><img src="images/staewax_antimoisissures.png" alt="Starwax Anti-moisissures"></div>
-            <div class="card-body">
-                <h2>Starwax Anti-moisissures</h2>
-                <div class="description-container">
-                    <div class="text-content truncated">
-                        Produit très pratique et effectif, testé sur des joints silicone difficiles. La moisissure disparaît sans frotter et le joint redevient blanc. Il suffit de laisser agir et de renouveler l'action 5 à 6 fois selon la quantité de moisissure.
-                    </div>
-                    <button class="read-more-btn" onclick="toggleReadMore(this)">Voir plus</button>
-                </div>
-                <a href="https://amzn.to/4bfHHC3" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
-            </div>
-        </article>
-
         <article class="card" data-category="occasion">
             <span class="tag">EXCEPTION</span>
             <div class="thumb"><img src="images/mamiya_occasion_01_vue_dessus.jpg" alt="Mamiya"></div>
             <div class="card-body">
                 <h2>Mamiya Argentique</h2>
-                <div class="description-container">
-                    <div class="text-content">Boîtier vintage pour les puristes.</div>
-                </div>
+                <p>Boîtier vintage pour les puristes.</p>
                 <a href="https://t.me/MICHEL8881967" class="btn-telegram" target="_blank">CONTACT TELEGRAM</a>
             </div>
         </article>
@@ -216,9 +185,7 @@
             <div class="thumb"><img src="images/Cortisol_Manager_Ashwagandha_COMPLEXE.png" alt="Ashwagandha"></div>
             <div class="card-body">
                 <h2>Ashwagandha</h2>
-                <div class="description-container">
-                    <div class="text-content">Équilibre et sérénité naturelle.</div>
-                </div>
+                <p>Équilibre et sérénité naturelle.</p>
                 <a href="#" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -227,9 +194,7 @@
             <div class="thumb"><img src="images/Mixa_Intensif_Peaux_Seches.png" alt="Mixa"></div>
             <div class="card-body">
                 <h2>Mixa Intensif</h2>
-                <div class="description-container">
-                    <div class="text-content">Hydratation profonde peaux sèches.</div>
-                </div>
+                <p>Hydratation profonde peaux sèches.</p>
                 <a href="#" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -238,9 +203,7 @@
             <div class="thumb"><img src="images/levis_501_homme_promo_01.png" alt="Levis 501"></div>
             <div class="card-body">
                 <h2>Levi’s 501 Original</h2>
-                <div class="description-container">
-                    <div class="text-content">Le jean iconique indémodable.</div>
-                </div>
+                <p>Le jean iconique indémodable.</p>
                 <a href="https://amzn.to/3ZGSWMR" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -249,9 +212,7 @@
             <div class="thumb"><img src="images/homo_deus.png" alt="Homo Deus"></div>
             <div class="card-body">
                 <h2>Homo Deus</h2>
-                <div class="description-container">
-                    <div class="text-content">L'avenir de l'humanité par Harari.</div>
-                </div>
+                <p>L'avenir de l'humanité par Harari.</p>
                 <a href="https://amzn.to/3N5YYnk" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -260,9 +221,7 @@
             <div class="thumb"><img src="images/la_psy.png" alt="La psy"></div>
             <div class="card-body">
                 <h2>La Psy</h2>
-                <div class="description-container">
-                    <div class="text-content">Le thriller psychologique choc.</div>
-                </div>
+                <p>Le thriller psychologique choc.</p>
                 <a href="https://amzn.to/3N2EoUV" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -271,9 +230,7 @@
             <div class="thumb"><img src="images/tapis_rouland.png" alt="Tapis"></div>
             <div class="card-body">
                 <h2>Tapis de Marche</h2>
-                <div class="description-container">
-                    <div class="text-content">Compact et pliable pour la maison.</div>
-                </div>
+                <p>Compact et pliable pour la maison.</p>
                 <a href="https://amzn.to/4pjJWId" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -282,9 +239,7 @@
             <div class="thumb"><img src="images/olej_silikonowy_do_biezni_200_ml.webp" alt="Silicone"></div>
             <div class="card-body">
                 <h2>Lubrifiant Silicone</h2>
-                <div class="description-container">
-                    <div class="text-content">Entretien vital pour tapis de course.</div>
-                </div>
+                <p>Entretien vital pour tapis de course.</p>
                 <a href="https://amzn.to/4bfHHC3" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -293,9 +248,7 @@
             <div class="thumb"><img src="images/REDimpact_Spray.jpg" alt="Spray"></div>
             <div class="card-body">
                 <h2>Spray Protection</h2>
-                <div class="description-container">
-                    <div class="text-content">Sécurité personnelle efficace.</div>
-                </div>
+                <p>Sécurité personnelle efficace.</p>
                 <a href="https://amzn.to/44YaXJL" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -304,9 +257,7 @@
             <div class="thumb"><img src="images/Marvis_Dentifrice.png" alt="Marvis"></div>
             <div class="card-body">
                 <h2>Marvis Menthe</h2>
-                <div class="description-container">
-                    <div class="text-content">L'élégance du dentifrice italien.</div>
-                </div>
+                <p>L'élégance du dentifrice italien.</p>
                 <a href="#" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -315,9 +266,7 @@
             <div class="thumb"><img src="images/BIONOBLE_Huile_de_Ricin_Bio.png" alt="Ricin"></div>
             <div class="card-body">
                 <h2>Huile de Ricin Bio</h2>
-                <div class="description-container">
-                    <div class="text-content">Soin fortifiant cheveux et ongles.</div>
-                </div>
+                <p>Soin fortifiant cheveux et ongles.</p>
                 <a href="#" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -326,9 +275,7 @@
             <div class="thumb"><img src="images/jean_femme_large.jpg" alt="Jean Femme"></div>
             <div class="card-body">
                 <h2>Jean Coupe Large</h2>
-                <div class="description-container">
-                    <div class="text-content">Style moderne et grand confort.</div>
-                </div>
+                <p>Style moderne et grand confort.</p>
                 <a href="https://amzn.to/4qkKX3O" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -337,9 +284,7 @@
             <div class="thumb"><img src="images/Adidas_VS_Pace_2_0.png" alt="Adidas"></div>
             <div class="card-body">
                 <h2>Adidas VS Pace 2.0</h2>
-                <div class="description-container">
-                    <div class="text-content">Baskets légères pour le quotidien.</div>
-                </div>
+                <p>Baskets légères pour le quotidien.</p>
                 <a href="https://amzn.to/4qkKX3O" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -349,9 +294,7 @@
             <div class="thumb"><img src="images/support_charnière_inox.png" alt="Charnière"></div>
             <div class="card-body">
                 <h2>Plaque de Réparation</h2>
-                <div class="description-container">
-                    <div class="text-content">Réparez vos meubles arrachés.</div>
-                </div>
+                <p>Réparez vos meubles arrachés.</p>
                 <a href="https://amzn.to/3OiukaM" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
@@ -361,19 +304,28 @@
             <div class="thumb"><img src="images/capteur_4_en_1.png" alt="Détecteur"></div>
             <div class="card-body">
                 <h2>Détecteur Gaz & CO</h2>
-                <div class="description-container">
-                    <div class="text-content">Protection 4-en-1 sentinelle foyer.</div>
-                </div>
+                <p>Protection 4-en-1 sentinelle foyer.</p>
                 <a href="https://amzn.to/4qawzKM" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
+            </div>
+        </article>
+
+        <article class="card" data-category="maison">
+            <span class="tag">MAISON</span>
+            <div class="thumb"><img src="images/staewax_antimoisissures.png" alt="Starwax"></div>
+            <div class="card-body">
+                <h2>Starwax Anti-moisissures</h2>
+                <p>Nettoyant surpuissant joints et carrelages.</p>
+                <a href="https://amzn.to/3PjXm9F" class="btn-amazon" target="_blank">VOIR SUR AMAZON</a>
             </div>
         </article>
     </div>
 
+    <div class="load-more-container">
+        <button id="loadMoreBtn" class="btn-load-more" onclick="showAllProducts()">VOIR TOUS LES PRODUITS</button>
+    </div>
+
     <div class="affiliation-note">
-        <p>
-            Note : En tant que partenaire affilié, je peux recevoir une commission pour les achats effectués via les liens présents sur ce site. 
-            <span style="color: var(--gold-bright); font-weight: 600;">Cela n'entraîne aucun frais supplémentaire pour vous</span> et n'affecte en rien le prix final des produits.
-        </p>
+        <p>Note : Partenaire affilié, je reçois une commission pour les achats via ces liens sans frais pour vous.</p>
     </div>
 
     <footer>
@@ -398,7 +350,7 @@ function googleTranslateElementInit() {
         const cards = document.querySelectorAll('.card');
         const buttons = document.querySelectorAll('.filter-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        if(event) event.target.classList.add('active');
         cards.forEach(card => {
             if (category === 'all' || card.getAttribute('data-category') === category) {
                 card.classList.remove('hidden');
@@ -407,22 +359,12 @@ function googleTranslateElementInit() {
             }
         });
     }
-
-    function toggleReadMore(btn) {
-        const textContent = btn.previousElementSibling;
-        if (textContent.classList.contains('truncated')) {
-            textContent.classList.remove('truncated');
-            btn.textContent = 'Voir moins';
-        } else {
-            textContent.classList.add('truncated');
-            btn.textContent = 'Voir plus';
-        }
+    function showAllProducts() {
+        document.getElementById('loadMoreBtn').innerText = "TOUTE LA COLLECTION EST AFFICHÉE";
     }
-
     const music = document.getElementById('bgMusic');
     function toggleMusic() { music.paused ? music.play() : music.pause(); }
     document.getElementById('volumeControl').oninput = function() { music.volume = this.value; };
 </script>
-
 </body>
 </html>
